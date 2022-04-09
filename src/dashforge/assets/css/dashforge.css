@@ -963,7 +963,8 @@ BUGS:
   --white: #fff;
   --gray: #7987a1;
   --gray-dark: #3b4863;
-  --primary: #0168fa;
+  --primary: #fa01dd;
+  /* --primary: #0168fa; */
   --secondary: #7987a1;
   --success: #10b759;
   --info: #00b8d4;
@@ -995,13 +996,14 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "Inter", sans-serif;
+  /* font-family: "IBM Plex Sans", sans-serif; */
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
   color: #001737;
   text-align: left;
-  background-color: #fff; }
+  background-color: #f1f1f17c; }
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
@@ -2642,12 +2644,14 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #0168fa;
-  border-color: #0168fa; }
+  background-color: #4361ee;
+  /* background-color: #0168fa; */
+
+  border-color: #4361ee; }
   .btn-primary:hover {
-    color: #fff;
-    background-color: #0158d4;
-    border-color: #0153c7; }
+    color: rgb(255, 255, 255);
+    background-color: #3a57d8;
+    border-color: rgb(60, 128, 205); }
   .btn-primary:focus, .btn-primary.focus {
     box-shadow: 0 0 0 0.2rem rgba(39, 127, 251, 0.5); }
   .btn-primary.disabled, .btn-primary:disabled {
@@ -4224,17 +4228,17 @@ input[type="button"].btn-block {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(72, 94, 144, 0.16);
-  border-radius: 0.25rem; }
+  border: 1px solid rgba(72, 94, 144, 0);
+  border-radius: 0.5rem; }
   .card > hr {
     margin-right: 0;
     margin-left: 0; }
   .card > .list-group:first-child .list-group-item:first-child {
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem; }
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem; }
   .card > .list-group:last-child .list-group-item:last-child {
-    border-bottom-right-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem; }
+    border-bottom-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem; }
 
 .card-body {
   flex: 1 1 auto;
@@ -13491,7 +13495,7 @@ textarea.parsley-success:focus {
       margin-left: 60px; } }
   @media (min-width: 1200px) {
     .aside-fixed + .content {
-      margin-left: 270px; } }
+      margin-left: 240px; } }
 
 .aside-header {
   display: flex;
@@ -13736,7 +13740,7 @@ textarea.parsley-success:focus {
     margin-top: 60px; } }
 
 .content-header {
-  background-color: #fff;
+  background-color: transparent;
   height: 55px;
   padding: 0 15px;
   display: flex;
@@ -41049,3 +41053,7 @@ a.bg-twitter:hover, a.bg-twitter:focus, button.bg-twitter:hover, button.bg-twitt
 
 .wd-280 {
   width: 280px; }
+
+.platform-nav{
+  background-color: #f1f1f17c;
+}
