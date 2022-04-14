@@ -5,10 +5,9 @@ import { Link } from 'react-router-dom'
 
 const TopPageInfo = (props) => {
 
-   const [show, setShow] = useState(false);
-   const handleClose = () => setShow(false);
-   const handleShow = () => setShow(true);
-
+   // const [show, setShow] = useState(false);
+   // const handleClose = () => setShow(false);
+   // const handleShow = () => setShow(true);
 
    return(
       <div className="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
