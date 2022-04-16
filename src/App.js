@@ -72,7 +72,7 @@ function App() {
           <Route path="/analytics">
             <Analytics />
           </Route>
-          <Redirect to="/analytics" />
+          <Redirect to="/" />
       </DataContext.Provider>
       </main>
     </div>
