@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Plus } from 'react-feather'
 import { Dropdown } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -14,7 +14,11 @@ const TopPageInfo = (props) => {
          <div>
          <nav aria-label="breadcrumb">
             <ol className="breadcrumb breadcrumb-style1 mg-b-10">
-               <li className="breadcrumb-item"><a href="#">{props.Crumb}</a></li>
+               <li className="breadcrumb-item">
+                  <Link to='/'>
+                     <a type="button">{props.Crumb}</a>
+                  </Link>
+                  </li>
                <li className="breadcrumb-item active" aria-current="page">{props.Slug}</li>
             </ol>
          </nav>

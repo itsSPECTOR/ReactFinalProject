@@ -1,16 +1,14 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Modal } from 'react-bootstrap'
 import { CirclePicker } from 'react-color'
 import { Zap, Edit } from 'react-feather'
 
+import './styles.css'
+
 const Hero = () => {
 
-   // modal form refs
-   const titleRef = useRef(null);
-   const subRef = useRef(null);
-   const contRef = useRef(null);
-
    // state management for hero
+   const [backgroundColor, setBackgroundColor] = useState(null)
    const [show, setShow] = useState(false);
    const [hero, setHero] = useState({
       title: 'Hero', 
@@ -18,9 +16,41 @@ const Hero = () => {
       content: 'this is conetent.',
    })
 
+   useEffect(()=>{
+      setBackgroundColor(window.localStorage.getItem("bgcolor"))
+
+      
+   }, [])
+
+   useEffect(()=>{
+
+      if(backgroundColor)      
+         window.localStorage.setItem("bgcolor", backgroundColor);
+
+   }, [backgroundColor])
+
+   useEffect(()=>{
+
+      if(hero){    
+         window.localStorage.setItem("hero-title", hero.title);
+         window.localStorage.setItem("hero-subtitle", hero.subtitle);
+         window.localStorage.setItem("hero-content", hero.content);
+      }
+   }, [hero])
+
+   // modal form refs
+   const titleRef = useRef(null);
+   const subRef = useRef(null);
+   const contRef = useRef(null);
+
    // modal controls open / update (state)
-   const handleShow = () => setShow(true);
    const handleUpdate = (color) => {
+
+      if(!titleRef.current.value){
+         setShow(false)
+         return;
+      }
+
       setHero({
          title: titleRef.current.value, 
          subtitle: subRef.current.value, 
@@ -30,10 +60,10 @@ const Hero = () => {
    };
 
    return(
-      <div style={{backgroundColor: '#0168fa'}} className="card card-body mg-b-25 pd-t-30">
+      <div style={{backgroundColor : backgroundColor || '#0168fa'}} className="hero-image card card-body mg-b-25 pd-t-30">
          <div className="tx-white pd-b-20 d-flex justify-content-between">
             <Zap size={26}/>
-            <a href="#" onClick={handleShow} className="tx-white"><Edit className="tx-white-5" size={22}/></a>
+            <p type='button' onClick={()=> setShow(true)} className="tx-white"><Edit className="tx-white-5" size={22}/></p>
          </div>
          <h6 className="tx-uppercase tx-20 tx-spacing-1 tx-white tx-bold mg-b-8">{hero.title}</h6>
          <div className="pd-b-20 d-lg-block align-items-end ">
@@ -55,12 +85,16 @@ const Hero = () => {
                </div>
                <div className="mg-t-20">
                   <div> Hero Content
-                     <textarea ref={contRef} name="content" className="form-control" rows="2" placeholder="Textarea"></textarea>
+                     <textarea ref={contRef} name="content" className="form-control mg-t-10" rows="4" placeholder="Textarea"></textarea>
                   </div>
                </div>
                <div className="mg-t-20 flex-fill ">
-                  <p>Select Color</p>
-                  <CirclePicker className='flex-grow-1' />
+                  <p className=''>Select Color</p>
+                  <CirclePicker 
+                     color={ backgroundColor || '#0168fa'}
+                     onChangeComplete={ color => setBackgroundColor(color.hex) } 
+                     className='flex-grow-1' 
+                  />
                </div>
             </Modal.Body>
             <Modal.Footer>

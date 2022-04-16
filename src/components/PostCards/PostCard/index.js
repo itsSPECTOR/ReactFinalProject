@@ -1,10 +1,11 @@
 import React from 'react'
 import { AlertTriangle, Calendar } from 'react-feather'
+import '../styles.css'
 
 const PostCard = (props) => {
 
     return(
-    <div className="col-sm-4 mg-t-10 mg-sm-t-0 col-lg-4">
+    <div className="col-sm-4 mg-t-10 mg-sm-t-0 col-lg-4 break">
         <div className="card card-body">
             <h6 className="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">
                 {props.Category === 'Alert' 

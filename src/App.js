@@ -1,11 +1,18 @@
-import './App.css';
 import React, { useState, createContext, useEffect } from 'react'
-import Home from './layouts/Home';
-import SideBar from './components/SideBar';
-import NewPost from './layouts/NewPost'
 import { Route, Redirect} from "react-router-dom";
+import './App.css';
+
+//layouts
+import Home from './layouts/Home';
+import NewPost from './layouts/NewPost'
+import Archive from './layouts/Archive'
+import Profile from './layouts/Profile'
+import Analytics from './layouts/Analytics'
+
+// components
+import SideBar from './components/SideBar';
 import PostsArr from './posts';
-import userData from './hooks/userData';
+import pupArr from './pups'
 
 import './dashforge/assets/css/dashforge.dashboard.css';
 import './dashforge/assets/css/dashforge.css'
@@ -19,7 +26,9 @@ function App() {
   // state
   const [posts, setPosts] = useState([...PostsArr]);
   const [userData, setUserData] = useState()
+  const [pups, setPups] = useState([...pupArr])
 
+  // bring in user api data
   useEffect(() => {
     const makeAPICall = async () =>{
       const res = await fetch(userImport)
@@ -29,10 +38,15 @@ function App() {
     makeAPICall();
   }, []);
 
-  // const addPosts = (addPost) => {
-  //    setPosts([addPost, ...posts]);
-  // }
+  const addPosts = (newPost) => {
+    setPosts([newPost, ...posts]);
+  }
 
+  const addPup = (newPup) =>{
+    setPups({newPup, ...pups})
+  }
+  
+  console.log('POST ARRAY - ', pups)
 
   return (
     <div className='body'>
@@ -42,12 +56,23 @@ function App() {
       <main>
       <DataContext.Provider value={posts}>
           <Route exact path="/">
-            {userData ? <Home data={posts} userData={userData}/> : '...loading'}
+            {userData 
+            ? <Home data={posts} userData={userData} addPup={addPup} pups={pups}/> 
+            : '...loading'}
           </Route>
           <Route path="/create">
-            <NewPost data={posts}/>
+            <NewPost data={posts} addPosts={addPosts} postLimit={3}/>
           </Route>
-          <Redirect to="/" />
+          <Route path="/archive">
+            <Archive data={posts}/>
+          </Route>
+          <Route path="/profile">
+            <Profile userData={userData}/>
+          </Route>
+          <Route path="/analytics">
+            <Analytics />
+          </Route>
+          <Redirect to="/analytics" />
       </DataContext.Provider>
       </main>
     </div>

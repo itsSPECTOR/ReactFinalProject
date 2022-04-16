@@ -1,0 +1,19 @@
+.dog-pic{
+   background-image: url("../../assets/img/paws.png");
+   background-position: bottom 40% right 20%;    
+   /* background-repeat: no-repeat; */
+   object-fit: contain;
+}
+   
+
+.bg-black{
+   background-color: black;
+}
+
+.dog-image img{
+   border-radius: 10px 10px 0 0;
+   height: 205px;
+   width: 360px;
+   padding: 0;
+   background-color: rgba(128, 128, 128, 0.071);
+}
